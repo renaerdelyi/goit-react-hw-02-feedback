@@ -3,10 +3,9 @@ import FeedbackOptions from '../components/FeedbackOptions';
 import Notification from '../components/Notification';
 import Section from '../components/Section';
 import Statistics from '../components/Statistics';
+import Style from "../components/App.css"
 
 export const App = () => {
-  
-
   const [feedback, setFeedback] = useState({
     good: 0,
     neutral: 0,
@@ -33,24 +32,16 @@ export const App = () => {
   const positivePercentage = countPositiveFeedbackPercentage();
 
   return (
-    <div style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}>
-      
-      <section title="Please leave fedback">
+    <div>
+      <Section title="Please leave fedback">
         <FeedbackOptions
           options={Object.keys(feedback)}
           onLeaveFeedback={handleFeedback}
         />
-      </section>
+      </Section>
 
       <Section title="Statistics">
-        {totalFeedback ? (
+        {totalFeedback > 0 ? (
           <Statistics
             good={feedback.good}
             neutral={feedback.neutral}
@@ -64,10 +55,4 @@ export const App = () => {
       </Section>
     </div>
   );
-}
-
-
-
-
-  
-
+};
